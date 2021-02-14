@@ -28,7 +28,7 @@ const highScore = function () {
 const setBGcolor = color =>
   (document.querySelector('body').style.backgroundColor = color);
 
-check.addEventListener('click', function () {
+const Game = function () {
   const guess = Number(document.querySelector('.guess').value);
 
   // if there is no input
@@ -54,6 +54,10 @@ check.addEventListener('click', function () {
       setMessage('Game over');
     }
   }
+};
+
+check.addEventListener('click', function () {
+  Game();
 });
 
 document.querySelector('.again').addEventListener('click', function () {
@@ -68,4 +72,10 @@ document.querySelector('.again').addEventListener('click', function () {
   secretNumber = Math.trunc(
     Math.random(document.querySelector('.number').value) * 20
   );
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter' && !check.disabled === true) {
+    Game();
+  }
 });
